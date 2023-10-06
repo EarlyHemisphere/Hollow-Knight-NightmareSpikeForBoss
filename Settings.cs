@@ -4,13 +4,13 @@ using Modding;
 namespace NightmareSpike
 {
     [Serializable]
-    public class SaveModSettings : ModSettings
+    public class SaveModSettings
     {
 
     }
 
     [Serializable]
-    public class GlobalModSettings : ModSettings
+    public class GlobalModSettings
     {
         public string SceneName = "GG_Hollow_Knight";
         //public string BossName = "HK Prime";

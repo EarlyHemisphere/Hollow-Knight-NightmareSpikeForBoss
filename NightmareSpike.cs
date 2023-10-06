@@ -5,19 +5,20 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using ModCommon;
 using Modding;
-using ModCommon.Util;
+using SFCore.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using System.Collections;
 using IL.InControl;
+using SFCore.Generics;
+using System.Runtime.Remoting.Messaging;
 
 namespace NightmareSpike
 {
-    public class NightmareSpike : Mod,ITogglableMod
+    public class NightmareSpike : Mod, ITogglableMod, IGlobalSettings<GlobalModSettings>
     {
         //public GameObject boss;
         public static double _rngfactory;
@@ -166,7 +167,9 @@ namespace NightmareSpike
         }
         public override string GetVersion() => "2.9";
 
-        public static GlobalModSettings Settings = new GlobalModSettings();
-        public override ModSettings GlobalSettings { get => Settings; set => Settings = (GlobalModSettings)value; }
+        public static GlobalModSettings Settings = new ();
+        public void OnLoadGlobal(GlobalModSettings s) => Settings = s;
+
+        public GlobalModSettings OnSaveGlobal() => Settings;
     }
 }
